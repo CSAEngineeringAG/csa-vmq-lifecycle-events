@@ -1,0 +1,23 @@
+{application, vmq_lifecycle_events,
+ [{description, "Plugin which publishes client lifecycle events to a $SYS topic"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {mod, {vmq_lifecycle_events_app, []}},
+  {applications,
+   [kernel,
+    stdlib
+   ]},
+  {env,[
+    {registry_mfa, {vmq_reg, direct_plugin_exports, [vmq_lifecycle_events]}},
+        {vmq_plugin_hooks, [
+            {vmq_lifecycle_events, on_register,3,[internal]},
+            {vmq_lifecycle_events, on_register_m5,4,[internal]},
+            {vmq_lifecycle_events, on_client_offline,1,[internal]},
+            {vmq_lifecycle_events, on_client_gone,1,[internal]}
+        ]}
+  ]},
+  {modules, []},
+
+  {licenses, ["Apache 2.0"]},
+  {links, []}
+ ]}.
