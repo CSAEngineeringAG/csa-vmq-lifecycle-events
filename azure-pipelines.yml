@@ -10,6 +10,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- script: 'erl -eval ''erlang:display(erlang:system_info(otp_release)), halt().''  -noshell'
+  displayName: 'Erlang OTP Version'
+
 - script: 'rebar3 compile'
   displayName: 'Rebar Compile'
 
